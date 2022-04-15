@@ -6,10 +6,13 @@
             <input type="submit" value="Search"/>
         </div>
         <a href="{% url 'finch-list' %}">Clear Search</a>
+        <a href="{% url 'finch_create' %}">Add Finch</a>
     </form>
-    <h1>Finches:</h1>
+    <h1>{{header}}</h1>
     {% for finch in finches %}
-    <h3>Name: {{finch.name}}</h3>
+    <a href="{% url 'finch_detail' finch.pk %}">
+        <h3>Name: {{finch.name}}</h3>
+    </a>
     <h3>Population: {{finch.population}}</h3>
     <h3>Habitat: {{finch.habitat}}</h3>
     {% endfor %}
