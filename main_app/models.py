@@ -12,7 +12,6 @@ HABITAT = (
 class Finch(models.Model):
 
     name = models.CharField(max_length=100)
-    #img = models.ImageField(max_length=250)
     population = models.IntegerField()
     habitat = models.CharField(max_length=25, choices=HABITAT)
     created_at = models.DateTimeField(auto_now_add=True)
