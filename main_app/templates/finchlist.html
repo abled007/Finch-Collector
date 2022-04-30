@@ -15,5 +15,8 @@
     </a>
     <h3>Population: {{finch.population}}</h3>
     <h3>Habitat: {{finch.habitat}}</h3>
+    <p>Adopted By: 
+        <a href='/user/{{finch.user.username}}'>{{finch.user.username}}</a>
+    </p>
     {% endfor %}
 {% endblock %}

@@ -7,6 +7,7 @@ from .models import Finch
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.urls import reverse
+from django.contrib.auth.models import User
 # Create your views here.
 
 class Home(TemplateView):
@@ -32,6 +33,11 @@ class Finch_Create(CreateView):
 
     def get_success_url(self):
         return reverse('finch_detail', kwargs={'pk': self.object.pk})  
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    finches = Finch.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'finches': finches})
 
 class FinchDetail(DetailView):
     model = Finch
