@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Finch Toy Details</h1>
+
+<div>
+    <div>
+        <span>{{ finchtoy.name }}</span>
+        <p>Color: {{ finchtoy.color }}</p>
+    </div>
+    <div>
+        <a href="{% url 'finchtoy_update' finchtoy.id %}">Edit</a>
+        <a href="{% url 'finchtoy_delete' finchtoy.id %}">Delete</a>
+    </div>
+</div>
+{% endblock %}
