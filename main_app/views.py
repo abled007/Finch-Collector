@@ -1,7 +1,7 @@
 from re import template
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from .models import Finch
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -23,7 +23,13 @@ class Finch_Create(CreateView):
     model = Finch
     fields = ['name', 'population', 'habitat']
     template_name = 'finch_create.html'
-    # success_url = '/finch/'
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/finch')
+
     def get_success_url(self):
         return reverse('finch_detail', kwargs={'pk': self.object.pk})  
 
@@ -35,7 +41,7 @@ class FinchUpdate(UpdateView):
     model = Finch
     fields = ['name', 'population', 'habitat']
     template_name = 'finch_update.html'
-    # success_url = '/finch'
+
     def get_success_url(self):
         return reverse('finch_detail', kwargs={'pk': self.object.pk})
 
