@@ -10,6 +10,13 @@ HABITAT = (
     ('s', 'Scrub'),
 )
 
+class FinchToy(models.Model):
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
 class Finch(models.Model):
 
     name = models.CharField(max_length=100)
@@ -17,16 +24,10 @@ class Finch(models.Model):
     habitat = models.CharField(max_length=25, choices=HABITAT)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    finchtoys = models.ManyToManyField(FinchToy)
 
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ['name']
-
-class FinchToy(models.Model):
-    name = models.CharField(max_length=100)
-    color = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name

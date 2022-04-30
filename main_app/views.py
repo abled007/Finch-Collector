@@ -18,7 +18,7 @@ class About(TemplateView):
 
 class Finch_Create(CreateView):
     model = Finch
-    fields = ['name', 'population', 'habitat']
+    fields = ['name', 'population', 'habitat', 'finchtoys']
     template_name = 'finch_create.html'
 
     def form_valid(self, form):
@@ -41,7 +41,7 @@ class FinchDetail(DetailView):
 
 class FinchUpdate(UpdateView):
     model = Finch
-    fields = ['name', 'population', 'habitat']
+    fields = ['name', 'population', 'habitat', 'finchtoys']
     template_name = 'finch_update.html'
 
     def get_success_url(self):

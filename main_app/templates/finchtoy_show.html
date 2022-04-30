@@ -4,10 +4,18 @@
 <h1>Finch Toy Details</h1>
 
 <div>
+
     <div>
         <span>{{ finchtoy.name }}</span>
         <p>Color: {{ finchtoy.color }}</p>
+        <p>Owned by:</p>
+        {% for finch in finchtoy.finch_set.all %}
+            <p>{{finch.name}}</p>
+        {% empty %}
+            <p>Nobody Has This Toy</p>
+        {% endfor %}
     </div>
+
     <div>
         <a href="{% url 'finchtoy_update' finchtoy.id %}">Edit</a>
         <a href="{% url 'finchtoy_delete' finchtoy.id %}">Delete</a>

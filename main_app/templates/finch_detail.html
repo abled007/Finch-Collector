@@ -8,6 +8,13 @@
     <h3>Population: {{finch.population}}</h3>
     <h3>Habitat: {{finch.habitat}}</h3>
 </div>
+
+{% for finchtoy in finch.finchtoys.all %}
+    <div>{{finchtoy.name}}</div>
+{% empty %}
+    <div>Finch Has No Toys :(</div>
+{% endfor %}
+
 <div>
     <a href="{% url 'finch_update' finch.pk %}">Update</a>
     <a href="{% url 'finch_delete' finch.pk %}">Delete</a>
